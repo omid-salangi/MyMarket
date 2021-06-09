@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CleanArch.Data.Context;
 
 namespace MyMarket.Mvc
 {
@@ -30,6 +31,12 @@ namespace MyMarket.Mvc
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("MyMarketDbConnection")));
+
+            services.AddDbContext<UniversityDbContext>(options => // add our new context
+            {
+                options.UseSqlServer("UniversityDbConnection");
+            });
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
