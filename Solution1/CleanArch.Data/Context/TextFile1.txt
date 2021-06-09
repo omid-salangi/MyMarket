@@ -1,0 +1,3 @@
+﻿ Add-Migration "hi" -context UniversityDbContext
+ we should define whiche context will be selected in migration
+ Update-Database -Context UniversityDbContext

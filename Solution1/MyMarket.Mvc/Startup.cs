@@ -34,7 +34,7 @@ namespace MyMarket.Mvc
 
             services.AddDbContext<UniversityDbContext>(options => // add our new context
             {
-                options.UseSqlServer("UniversityDbConnection");
+                options.UseSqlServer(Configuration.GetConnectionString("UniversityDbConnection"));
             });
 
             services.AddDatabaseDeveloperPageExceptionFilter();
