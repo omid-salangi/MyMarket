@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CleanArch.Data.Context;
+using IoC;
 
 namespace MyMarket.Mvc
 {
@@ -42,6 +43,7 @@ namespace MyMarket.Mvc
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+            RegisterServices(services); // this is for dependency injections in IOC
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,6 +75,11 @@ namespace MyMarket.Mvc
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+        }
+
+        public static void RegisterServices(IServiceCollection service)
+        {
+            DependencyContainer.RegisterServices(service); //this function will be called in services
         }
     }
 }
